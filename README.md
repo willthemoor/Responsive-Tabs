@@ -20,7 +20,8 @@ Version History
 1.7 Moved some CSS out of media queries and fixed JS issue to give (non-responsive) support for IE7 and IE8  
 1.8 Fixed some issues flagged by JSHint and tweaked accordion interaction  
 1.9 Made it a self executing function and made css filename more explicit  
-1.10 Fixed potential scrolling issue in accordion view when more than one set of tabs on page, and other efficiency tweaks
+1.10 Fixed potential scrolling issue in accordion view when more than one set of tabs on page, and other efficiency tweaks  
+1.11 Add the ability to pass custom classes to rendered tabs via data-attributes on the headings
 
 Key features
 ============
@@ -42,21 +43,42 @@ How to use
 - Include the css from responsive-tabs.css, and adjust the media query breakpoint as desired
 - Markup your tabs regions as follows:
 
-		<div class="responsive-tabs">
-			<h2>[...]</h2>
-			<div>[...]</div>
-			<h2>[...]</h2>
-			<div>[...]</div>
-		</div>
+```html
+<div class="responsive-tabs">
+	<h2>[...]</h2>
+	<div>[...]</div>
+	<h2>[...]</h2>
+	<div>[...]</div>
+</div>
+```
 
 The headings can be any level, from h1 to h6. Note that the first (leftmost) tab panel will be open by default in 'tab view', while all panels will be closed in 'accordion view' (ie. below the specified breakpoint).
 If you want a specific tab other than the first to be open by default then add the additional class 'responsive-tabs__panel--active' onto the panel, eg:
 
-		<div class="responsive-tabs">
-			<h2>[...]</h2>
-			<div>[...]</div>
-			<h2>[...]</h2>
-			<div class="responsive-tabs__panel--active">[...]</div>
-		</div>
+```html
+<div class="responsive-tabs">
+	<h2>[...]</h2>
+	<div>[...]</div>
+	<h2>[...]</h2>
+	<div class="responsive-tabs__panel--active">[...]</div>
+</div>
+```
+
+To include custom classes on the generated tabs, add a `data-tab-class="myclass"` attribute to any heading.
+
+```html
+<div class="responsive-tabs">
+	<h2 data-tab-class="my-custom-classname">[...]</h2>
+	<div>[...]</div>
+	<h2>[...]</h2>
+	<div>[...]</div>
+</div>
+```
+
+will generate:
+
+```html
+<li class="responsive-tabs__list__item my-custom-classname">[...]</li>
+```
 
 - On document ready, call the function RESPONSIVEUI.responsiveTabs() to create the tabs
