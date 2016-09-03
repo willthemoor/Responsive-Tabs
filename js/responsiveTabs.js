@@ -60,6 +60,8 @@ var RESPONSIVEUI = {};
 
 					var $tabHeading = $(this);
 					var $tabPanel = $(this).next();
+					var extraClass = $tabHeading.data("tabClass") || "";
+
 
 					$tabHeading.attr('tabindex', 0);
 
@@ -67,7 +69,7 @@ var RESPONSIVEUI = {};
 					//create tab list item from heading
 					//associate tab list item with tab panel
 					var $tabListItem = $('<li/>', { 
-						'class': 'responsive-tabs__list__item',
+						'class': 'responsive-tabs__list__item ' + extraClass,
 						id: 'tablist' + tablistcount + '-tab' + tabcount,
 						'aria-controls': 'tablist' + tablistcount +'-panel' + tabcount,
 						'role': 'tab',
